@@ -8,5 +8,5 @@
         <a href="{{ route('admin.services.plans.index') }}" class="text-ink-500 hover:text-ink-50 transition-colors">← Voltar</a>
     </div>
 
-    @include('admin.services.plans.form', ['plan' => $plan, 'route' => route('admin.services.plans.update', $plan), 'method' => 'PUT'])
+    @include('admin.services.plans.form', ['plan' => $plan, 'route' => route('admin.plans.update', $plan), 'method' => 'PUT'])
 @endsection

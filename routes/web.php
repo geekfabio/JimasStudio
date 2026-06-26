@@ -55,7 +55,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/configuracoes', [SiteSettingController::class, 'update'])->name('settings.update');
 
         Route::resource('services', ServiceCategoryController::class);
-        Route::resource('services.plans', ServicePlanController::class)->shallow();
+
+        Route::get('services/plans', [ServicePlanController::class, 'index'])->name('services.plans.index');
+        Route::post('services/plans', [ServicePlanController::class, 'store'])->name('services.plans.store');
+        Route::get('services/plans/create', [ServicePlanController::class, 'create'])->name('services.plans.create');
+        Route::resource('plans', ServicePlanController::class)->only(['show', 'edit', 'update', 'destroy'])->names([
+            'show' => 'plans.show',
+            'edit' => 'plans.edit',
+            'update' => 'plans.update',
+            'destroy' => 'plans.destroy',
+        ]);
 
         Route::resource('news', AdminNewsController::class);
         Route::resource('events', AdminEventController::class);

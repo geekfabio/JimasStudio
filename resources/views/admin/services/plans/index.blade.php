@@ -33,8 +33,8 @@
                             @endif
                         </td>
                         <td class="px-6 py-4 text-right space-x-2">
-                            <a href="{{ route('admin.services.plans.edit', $plan) }}" class="text-gold-300 hover:underline">Editar</a>
-                            <form method="POST" action="{{ route('admin.services.plans.destroy', $plan) }}" class="inline" onsubmit="return confirm('Eliminar este plano?')">
+                            <a href="{{ route('admin.plans.edit', $plan) }}" class="text-gold-300 hover:underline">Editar</a>
+                            <form method="POST" action="{{ route('admin.plans.destroy', $plan) }}" class="inline" onsubmit="return confirm('Eliminar este plano?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
