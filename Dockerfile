@@ -18,6 +18,7 @@ FROM php:8.3-fpm-alpine AS runtime
 RUN apk add --no-cache \
     nginx \
     supervisor \
+    git \
     libpng-dev \
     libzip-dev \
     zip \
@@ -47,8 +48,12 @@ WORKDIR /var/www/html
 COPY . .
 COPY --from=assets /app/public/build ./public/build
 
-# Install PHP dependencies (no dev)
-RUN composer install --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts && \
+# Install PHP dependencies (no dev) — try dist first, fallback to source if GitHub zipball fails
+ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV COMPOSER_NO_AUDIT=1
+ENV COMPOSER_PROCESS_TIMEOUT=600
+RUN (composer install --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts --prefer-dist || \
+    composer install --no-dev --no-interaction --no-progress --optimize-autoloader --no-scripts --prefer-source) && \
     php artisan package:discover --ansi && \
     composer clear-cache
 
