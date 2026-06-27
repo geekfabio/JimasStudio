@@ -62,7 +62,7 @@ RUN mkdir -p /var/log/supervisor
 
 # Set permissions for Laravel
 RUN mkdir -p storage/framework/{views,cache,sessions} storage/logs bootstrap/cache database && \
-    touch database/database.sqlite && \
+    [ -f database/database.sqlite ] || touch database/database.sqlite && \
     chmod -R 775 storage bootstrap/cache database && \
     chown -R www-data:www-data storage bootstrap/cache database
 

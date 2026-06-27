@@ -33,7 +33,7 @@ class CatalogSeeder extends Seeder
 
         foreach ($items as $item) {
             $item['slug'] = Str::slug($item['title']);
-            CatalogItem::create($item);
+            CatalogItem::updateOrCreate(['slug' => $item['slug']], $item);
         }
     }
 }

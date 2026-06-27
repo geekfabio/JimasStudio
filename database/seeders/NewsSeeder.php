@@ -36,7 +36,7 @@ class NewsSeeder extends Seeder
 
         foreach ($news as $item) {
             $item['slug'] = Str::slug($item['title']);
-            News::create($item);
+            News::updateOrCreate(['slug' => $item['slug']], $item);
         }
     }
 }

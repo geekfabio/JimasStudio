@@ -23,22 +23,29 @@ class ServiceSeeder extends Seeder
 
     private function createCategory(array $data): ServiceCategory
     {
-        return ServiceCategory::create($data);
+        return ServiceCategory::updateOrCreate(['slug' => $data['slug']], $data);
     }
 
     private function createPlan(ServiceCategory $category, ?SubCategory $subCategory, array $planData, array $features): ServicePlan
     {
-        $plan = $category->plans()->create([
-            'sub_category_id' => $subCategory?->id,
-            'name' => $planData['name'],
-            'price' => $planData['price'],
-            'price_label' => $planData['price_label'] ?? null,
-            'duration' => $planData['duration'] ?? null,
-            'description' => $planData['description'] ?? null,
-            'is_featured' => $planData['is_featured'] ?? false,
-            'sort_order' => $planData['sort_order'] ?? 0,
-        ]);
+        $plan = ServicePlan::updateOrCreate(
+            [
+                'category_id' => $category->id,
+                'sub_category_id' => $subCategory?->id,
+                'name' => $planData['name'],
+            ],
+            [
+                'price' => $planData['price'],
+                'price_label' => $planData['price_label'] ?? null,
+                'duration' => $planData['duration'] ?? null,
+                'description' => $planData['description'] ?? null,
+                'is_featured' => $planData['is_featured'] ?? false,
+                'sort_order' => $planData['sort_order'] ?? 0,
+            ]
+        );
 
+        // Sync features to avoid duplicates on re-runs
+        $plan->features()->delete();
         foreach ($features as $index => $feature) {
             $plan->features()->create([
                 'text' => $feature,
@@ -277,10 +284,10 @@ class ServiceSeeder extends Seeder
         ]);
 
         // Maternity sub-category
-        $maternity = $category->subCategories()->create([
-            'name' => 'Sessões de Maternidade',
-            'sort_order' => 1,
-        ]);
+        $maternity = SubCategory::updateOrCreate(
+            ['category_id' => $category->id, 'name' => 'Sessões de Maternidade'],
+            ['sort_order' => 1]
+        );
 
         $this->createPlan($category, $maternity, [
             'name' => 'Maternity Start',
@@ -334,11 +341,10 @@ class ServiceSeeder extends Seeder
             ['name' => 'Impressão fotográfica', 'price_display' => 'Sob orçamento'],
             ['name' => 'Entrega urgente 24h', 'price_display' => '+25%'],
         ] as $index => $addon) {
-            $category->addons()->create([
-                'name' => $addon['name'],
-                'price_display' => $addon['price_display'],
-                'sort_order' => $index,
-            ]);
+            Addon::updateOrCreate(
+                ['category_id' => $category->id, 'name' => $addon['name']],
+                ['price_display' => $addon['price_display'], 'sort_order' => $index]
+            );
         }
     }
 
@@ -530,10 +536,10 @@ class ServiceSeeder extends Seeder
         ]);
 
         // Proposal / Engagement
-        $love = $category->subCategories()->create([
-            'name' => 'Pedidos de Casamento & Noivados',
-            'sort_order' => 1,
-        ]);
+        $love = SubCategory::updateOrCreate(
+            ['category_id' => $category->id, 'name' => 'Pedidos de Casamento & Noivados'],
+            ['sort_order' => 1]
+        );
 
         $this->createPlan($category, $love, [
             'name' => 'Love Start',
@@ -572,10 +578,10 @@ class ServiceSeeder extends Seeder
         ]);
 
         // Birthdays
-        $birthdays = $category->subCategories()->create([
-            'name' => 'Aniversários',
-            'sort_order' => 2,
-        ]);
+        $birthdays = SubCategory::updateOrCreate(
+            ['category_id' => $category->id, 'name' => 'Aniversários'],
+            ['sort_order' => 2]
+        );
 
         $this->createPlan($category, $birthdays, [
             'name' => 'Start',
@@ -621,11 +627,10 @@ class ServiceSeeder extends Seeder
             ['name' => 'Vídeo teaser', 'price_display' => '50.000 Kz'],
             ['name' => 'Entrega urgente 24h', 'price_display' => '+25%'],
         ] as $index => $addon) {
-            $category->addons()->create([
-                'name' => $addon['name'],
-                'price_display' => $addon['price_display'],
-                'sort_order' => $index,
-            ]);
+            Addon::updateOrCreate(
+                ['category_id' => $category->id, 'name' => $addon['name']],
+                ['price_display' => $addon['price_display'], 'sort_order' => $index]
+            );
         }
     }
 }

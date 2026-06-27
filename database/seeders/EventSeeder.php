@@ -36,7 +36,7 @@ class EventSeeder extends Seeder
 
         foreach ($events as $event) {
             $event['slug'] = Str::slug($event['title']);
-            Event::create($event);
+            Event::updateOrCreate(['slug' => $event['slug']], $event);
         }
     }
 }

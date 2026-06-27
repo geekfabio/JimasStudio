@@ -36,7 +36,7 @@ class PortfolioSeeder extends Seeder
 
         foreach ($items as $item) {
             $item['slug'] = Str::slug($item['title']);
-            PortfolioItem::create($item);
+            PortfolioItem::updateOrCreate(['slug' => $item['slug']], $item);
         }
     }
 }
