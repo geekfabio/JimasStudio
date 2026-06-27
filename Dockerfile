@@ -57,6 +57,9 @@ RUN (composer install --no-dev --no-interaction --no-progress --optimize-autoloa
     php artisan package:discover --ansi && \
     composer clear-cache
 
+# Ensure supervisor log directory exists
+RUN mkdir -p /var/log/supervisor
+
 # Set permissions for Laravel
 RUN mkdir -p storage/framework/{views,cache,sessions} storage/logs bootstrap/cache database && \
     touch database/database.sqlite && \
