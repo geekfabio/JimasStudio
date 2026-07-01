@@ -6,17 +6,17 @@
     @endphp
 
     <!-- Hero -->
-    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 px-6 overflow-hidden">
+    <section class="relative pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-28 px-4 sm:px-6 overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-white via-gold-50/60 to-white"></div>
         <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(45deg, #27b3cb 0, #3B82F6 1px, transparent 0, transparent 50%); background-size: 24px 24px;"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-[0.06]" style="background: radial-gradient(circle, #27b3cb 0%, transparent 70%);"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[700px] md:h-[700px] rounded-full opacity-[0.08]" style="background: radial-gradient(circle, #25B6CD 0%, transparent 70%);"></div>
 
         <div class="relative z-10 max-w-4xl mx-auto text-center">
-            <span class="section-label inline-block mb-6">Contactos</span>
-            <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-ink-50 mb-6 md:mb-8 leading-[1.05]">
+            <span class="section-label inline-block mb-5 md:mb-6 animate-fade-in-up" style="animation-delay: 0.1s;">Contactos</span>
+            <h1 class="hero-title font-display font-extrabold text-ink-50 mb-5 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
                 Vamos conversar sobre o teu próximo <span class="gold-text">projecto</span>.
             </h1>
-            <p class="text-ink-300 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+            <p class="text-ink-300 text-base sm:text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.3s;">
                 Estamos prontos para ajudar a tua empresa a crescer. Entra em contacto connosco e responderemos em breve.
             </p>
         </div>
@@ -25,11 +25,11 @@
     <div class="gold-divider max-w-7xl mx-auto"></div>
 
     <!-- Contacto -->
-    <section class="py-20 md:py-28 px-6">
+    <section class="py-16 sm:py-20 md:py-28 px-4 sm:px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
                 <!-- Formulário -->
-                <div class="bg-white rounded-3xl p-8 md:p-10 lg:p-12 shadow-xl border border-ink-700/10 order-2 lg:order-1 hover:shadow-2xl transition-shadow duration-300">
+                <div class="bg-white rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 shadow-xl border border-ink-700/10 order-2 lg:order-1 hover:shadow-2xl transition-shadow duration-300 reveal">
                     <div class="mb-8">
                         <h2 class="font-display font-bold text-3xl text-ink-50 mb-3">Envia-nos uma mensagem</h2>
                         <p class="text-ink-400">Preenche o formulário abaixo e entraremos em contacto brevemente.</p>
@@ -82,14 +82,14 @@
                 </div>
 
                 <!-- Informações -->
-                <div class="order-1 lg:order-2 space-y-8">
+                <div class="order-1 lg:order-2 space-y-8 reveal reveal-delay-2">
                     <div>
-                        <h2 class="font-display font-bold text-3xl text-ink-50 mb-4">Informações de contacto</h2>
-                        <p class="text-ink-300 text-lg">Podes entrar em contacto connosco através dos seguintes canais. Estamos disponíveis de segunda a sexta, das 08h às 18h.</p>
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl text-ink-50 mb-4">Informações de contacto</h2>
+                        <p class="text-ink-300 text-base sm:text-lg">Podes entrar em contacto connosco através dos seguintes canais. Estamos disponíveis de segunda a sexta, das 08h às 18h.</p>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <a href="mailto:{{ setting('site_email', 'geral@jimas.ao') }}" class="cursor-pointer group bg-white rounded-2xl p-6 border border-ink-700/10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 stagger-children">
+                        <a href="mailto:{{ setting('site_email', 'geral@jimas.ao') }}" class="reveal cursor-pointer group bg-white rounded-2xl p-6 border border-ink-700/10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
                             <div class="w-12 h-12 rounded-xl bg-gold-300/10 text-gold-300 flex items-center justify-center mb-4 group-hover:bg-gold-300 group-hover:text-white transition-colors duration-200">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             </div>
@@ -97,7 +97,7 @@
                             <p class="text-ink-400 text-sm">{{ setting('site_email', 'geral@jimas.ao') }}</p>
                         </a>
 
-                        <a href="tel:{{ preg_replace('/[^\d+]/', '', setting('site_phone', '+244972465386')) }}" class="cursor-pointer group bg-white rounded-2xl p-6 border border-ink-700/10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+                        <a href="tel:{{ preg_replace('/[^\d+]/', '', setting('site_phone', '+244972465386')) }}" class="reveal cursor-pointer group bg-white rounded-2xl p-6 border border-ink-700/10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
                             <div class="w-12 h-12 rounded-xl bg-gold-300/10 text-gold-300 flex items-center justify-center mb-4 group-hover:bg-gold-300 group-hover:text-white transition-colors duration-200">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                             </div>
@@ -105,7 +105,7 @@
                             <p class="text-ink-400 text-sm">{{ setting('site_phone', '+244 972 465 386') }}</p>
                         </a>
 
-                        <div class="bg-white rounded-2xl p-6 border border-ink-700/10 shadow-sm sm:col-span-2">
+                        <div class="reveal bg-white rounded-2xl p-6 border border-ink-700/10 shadow-sm sm:col-span-2">
                             <div class="w-12 h-12 rounded-xl bg-gold-300/10 text-gold-300 flex items-center justify-center mb-4">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                             </div>

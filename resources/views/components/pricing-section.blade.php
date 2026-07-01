@@ -1,19 +1,19 @@
 @props(['category'])
 
-<section id="{{ $category->slug }}" class="section-anchor py-20 px-6">
+<section id="{{ $category->slug }}" class="section-anchor py-16 md:py-20 px-4 sm:px-6">
     <div class="max-w-7xl mx-auto">
-        <div class="mb-12 text-center">
+        <div class="mb-10 md:mb-12 text-center reveal">
             <span class="section-label block mb-3">{{ $category->label }}</span>
-            <h2 class="font-display font-bold text-4xl md:text-5xl text-ink-50">{{ $category->title }}</h2>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-ink-50">{{ $category->title }}</h2>
             @if ($category->subtitle)
-                <p class="text-ink-300 mt-3 max-w-xl mx-auto">{{ $category->subtitle }}</p>
+                <p class="text-ink-300 mt-3 max-w-xl mx-auto text-sm sm:text-base">{{ $category->subtitle }}</p>
             @endif
         </div>
 
         @if ($category->banner_image)
-            <div class="section-banner mb-8">
+            <div class="section-banner mb-8 reveal">
                 <img src="{{ $category->banner_image }}" alt="{{ $category->banner_alt }}" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-t from-ink-800/30 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent"></div>
             </div>
         @endif
 
@@ -27,17 +27,17 @@
             };
         @endphp
 
-        <div class="grid {{ $columns }} gap-5 mb-8">
+        <div class="grid {{ $columns }} gap-4 sm:gap-5 mb-8 stagger-children">
             @foreach ($directPlans as $plan)
                 <x-pricing-card :plan="$plan" :compact="$directPlans->count() >= 5" />
             @endforeach
         </div>
 
         @foreach ($category->subCategories as $subCategory)
-            <div class="mb-3 mt-10">
+            <div class="mb-3 mt-10 reveal">
                 <p class="section-label mb-4">{{ $subCategory->name }}</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-10 stagger-children">
                 @foreach ($subCategory->plans as $plan)
                     <x-pricing-card :plan="$plan" compact />
                 @endforeach

@@ -39,19 +39,19 @@
         </button>
     </div>
 
-    <div id="mobile-menu" class="lg:hidden bg-ink-900 border-t border-ink-700 mt-4 rounded-2xl overflow-hidden">
+    <div id="mobile-menu" class="lg:hidden bg-ink-900 border-t border-ink-700 mt-4 rounded-2xl shadow-xl">
         <div class="flex flex-col p-4 gap-3 text-sm font-medium text-ink-200">
-            <a href="{{ route('home') }}" class="hover:text-gold-300 py-1">Início</a>
-            <a href="{{ route('pages.show', 'sobre-nos') }}" class="hover:text-gold-300 py-1">Empresa</a>
-            <a href="{{ route('servicos') }}" class="hover:text-gold-300 py-1">Serviços</a>
+            <a href="{{ route('home') }}" class="mobile-link hover:text-gold-300 py-1 {{ request()->routeIs('home') ? 'text-gold-300' : '' }}">Início</a>
+            <a href="{{ route('pages.show', 'sobre-nos') }}" class="mobile-link hover:text-gold-300 py-1 {{ request()->routeIs('pages.show') ? 'text-gold-300' : '' }}">Empresa</a>
+            <a href="{{ route('servicos') }}" class="mobile-link hover:text-gold-300 py-1 {{ request()->routeIs('servicos') ? 'text-gold-300' : '' }}">Serviços</a>
             @if ($hasPortfolio)
-                <a href="{{ route('portfolio.index') }}" class="hover:text-gold-300 py-1">Portfólio</a>
+                <a href="{{ route('portfolio.index') }}" class="mobile-link hover:text-gold-300 py-1 {{ request()->routeIs('portfolio.*') ? 'text-gold-300' : '' }}">Portfólio</a>
             @endif
             @if ($hasNews)
-                <a href="{{ route('news.index') }}" class="hover:text-gold-300 py-1">Notícias</a>
+                <a href="{{ route('news.index') }}" class="mobile-link hover:text-gold-300 py-1 {{ request()->routeIs('news.*') ? 'text-gold-300' : '' }}">Notícias</a>
             @endif
-            <a href="{{ route('contact') }}" class="hover:text-gold-300 py-1">Contactos</a>
-            <a href="{{ $whatsappUrl }}" target="_blank" class="wa-btn mt-2 text-center py-2 rounded-full text-white font-semibold">WhatsApp</a>
+            <a href="{{ route('contact') }}" class="mobile-link hover:text-gold-300 py-1 {{ request()->routeIs('contact') ? 'text-gold-300' : '' }}">Contactos</a>
+            <a href="{{ $whatsappUrl }}" target="_blank" class="mobile-wa-btn wa-btn mt-2 text-center py-2 rounded-full text-white font-semibold">WhatsApp</a>
         </div>
     </div>
 </nav>

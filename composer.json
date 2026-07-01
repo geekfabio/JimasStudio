@@ -26,7 +26,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/settings.php"
+            "app/Helpers/settings.php",
+            "app/Helpers/service_icons.php"
         ]
     },
     "autoload-dev": {

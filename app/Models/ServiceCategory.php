@@ -15,6 +15,7 @@ class ServiceCategory extends Model
         'label',
         'title',
         'subtitle',
+        'icon',
         'banner_image',
         'banner_alt',
         'sort_order',

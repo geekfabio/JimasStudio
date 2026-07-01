@@ -23,7 +23,9 @@ class ServiceCategoryController extends Controller
 
     public function create(): View
     {
-        return view('admin.services.categories.create');
+        return view('admin.services.categories.create', [
+            'iconOptions' => service_icon_options(),
+        ]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -38,7 +40,10 @@ class ServiceCategoryController extends Controller
 
     public function edit(ServiceCategory $service): View
     {
-        return view('admin.services.categories.edit', compact('service'));
+        return view('admin.services.categories.edit', [
+            'service' => $service,
+            'iconOptions' => service_icon_options(),
+        ]);
     }
 
     public function update(Request $request, ServiceCategory $service): RedirectResponse
@@ -68,6 +73,7 @@ class ServiceCategoryController extends Controller
             'label' => ['required', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'subtitle' => ['nullable', 'string'],
+            'icon' => ['nullable', 'string', 'max:255'],
             'banner_image' => ['nullable', 'image', 'max:2048'],
             'banner_alt' => ['nullable', 'string', 'max:255'],
             'sort_order' => ['integer'],

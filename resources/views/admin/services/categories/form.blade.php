@@ -33,6 +33,25 @@
                 class="w-full px-4 py-2 rounded-lg bg-white border border-ink-200 text-ink-50 focus:border-gold-300 outline-none" />
         </div>
 
+        <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-ink-500 mb-3">Ícone</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3" id="icon-selector">
+                @foreach ($iconOptions as $value => $label)
+                    <label class="cursor-pointer relative">
+                        <input type="radio" name="icon" value="{{ $value }}" {{ old('icon', $service?->icon) === $value ? 'checked' : '' }}
+                            class="peer sr-only" />
+                        <div class="flex items-center gap-3 p-3 rounded-lg border border-ink-200 bg-white hover:border-gold-300 peer-checked:border-gold-300 peer-checked:bg-gold-300/10 transition-all">
+                            <x-service-icon :name="$value" class="w-5 h-5 text-ink-400 peer-checked:text-gold-300" />
+                            <span class="text-xs text-ink-500 peer-checked:text-ink-50">{{ $label }}</span>
+                        </div>
+                    </label>
+                @endforeach
+            </div>
+            @error('icon')
+                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
         <div>
             <label class="block text-sm font-medium text-ink-500 mb-1">Banner / Imagem</label>
             <input type="file" name="banner_image" accept="image/*"
