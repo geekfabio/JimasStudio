@@ -54,11 +54,24 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/configuracoes', [SiteSettingController::class, 'edit'])->name('settings.edit');
         Route::put('/configuracoes', [SiteSettingController::class, 'update'])->name('settings.update');
 
-        Route::resource('services', ServiceCategoryController::class);
+        Route::get('services/plans', [ServicePlanController::class, 'index'])
+    ->name('services.plans.index');
 
-        Route::get('services/plans', [ServicePlanController::class, 'index'])->name('services.plans.index');
-        Route::post('services/plans', [ServicePlanController::class, 'store'])->name('services.plans.store');
-        Route::get('services/plans/create', [ServicePlanController::class, 'create'])->name('services.plans.create');
+Route::post('services/plans', [ServicePlanController::class, 'store'])
+    ->name('services.plans.store');
+
+Route::get('services/plans/create', [ServicePlanController::class, 'create'])
+    ->name('services.plans.create');
+
+Route::resource('services', ServiceCategoryController::class);
+        
+        // old code
+        //Route::resource('services', ServiceCategoryController::class);
+
+        //Route::get('services/plans', [ServicePlanController::class, 'index'])->name('services.plans.index');
+        //Route::post('services/plans', [ServicePlanController::class, 'store'])->name('services.plans.store');
+        //Route::get('services/plans/create', [ServicePlanController::class, 'create'])->name('services.plans.create');
+
         Route::resource('plans', ServicePlanController::class)->only(['show', 'edit', 'update', 'destroy'])->names([
             'show' => 'plans.show',
             'edit' => 'plans.edit',
