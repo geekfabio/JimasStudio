@@ -343,3 +343,16 @@ body {
         font-size: clamp(2.75rem, 8vw, 5rem);
     }
 }
+
+/* Full-screen mobile navigation */
+@media (max-width: 1023px) {
+    #mobile-menu { position: fixed; inset: 0; z-index: -1; min-height: 100dvh; background: #08213c; transform: translateY(-100%); display: block; visibility: hidden; opacity: 0; transition: transform .55s cubic-bezier(.22,1,.36,1), opacity .35s ease, visibility .55s; }
+    #mobile-menu.open { visibility: visible; opacity: 1; transform: translateY(0); }
+    #mobile-menu > div { min-height: 100dvh; justify-content: center; padding: 6rem 2rem 2rem; gap: 1rem; overflow-y: auto; }
+    #mobile-menu .mobile-link { color: white; font-family: 'Syne',sans-serif; font-size: clamp(1.5rem,7vw,2.5rem); font-weight: 700; }
+    body.menu-open { overflow: hidden; }
+    #menu-btn { position: relative; z-index: 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

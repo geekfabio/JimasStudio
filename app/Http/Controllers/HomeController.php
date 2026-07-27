@@ -17,8 +17,8 @@ class HomeController extends Controller
             'services' => ServiceCategory::where('is_active', true)->orderBy('sort_order')->limit(6)->get(),
             'portfolio' => PortfolioItem::published()->limit(6)->get(),
             'news' => News::published()->limit(3)->get(),
-            'metaTitle' => setting('home_hero_title', 'JIMAS Marketing e Comunicação — Estratégias de Crescimento em Angola'),
-            'metaDescription' => setting('home_hero_subtitle', 'Mais do que marketing, entregamos crescimento. Estratégias de marketing, comunicação e posicionamento para empresas em Luanda, Angola.'),
+            'metaTitle' => setting('seo_title') ?: setting('home_hero_title', 'JIMAS Marketing e Comunicação — Estratégias de Crescimento em Angola'),
+            'metaDescription' => setting('seo_description') ?: strip_tags(setting('home_hero_subtitle', 'Mais do que marketing, entregamos crescimento. Estratégias de marketing, comunicação e posicionamento para empresas em Luanda, Angola.')),
             'canonical' => config('app.url'),
         ]);
     }

@@ -13,13 +13,19 @@ const menuBtn = document.getElementById('menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
 if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-    });
+    const setMenu = (open) => {
+        mobileMenu.classList.toggle('open', open);
+        document.body.classList.toggle('menu-open', open);
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+        mobileMenu.setAttribute('aria-hidden', String(!open));
+    };
+    menuBtn.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMenu(false); });
 
     // Close mobile menu on link click
     mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        link.addEventListener('click', () => setMenu(false));
     });
 }
 
