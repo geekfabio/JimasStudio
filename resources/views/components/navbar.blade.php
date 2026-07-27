@@ -2,12 +2,13 @@
     $whatsappUrl = whatsapp_url(setting('whatsapp_message', 'Olá, gostaria de saber mais sobre os serviços da JIMAS.'));
     $hasPortfolio = \App\Models\PortfolioItem::published()->exists();
     $hasNews = \App\Models\News::published()->exists();
+    $siteLogo = setting('site_logo');
 @endphp
 
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
         <a href="{{ route('home') }}" aria-label="JIMAS — Início">
-            <img src="{{ asset('images/logo.png') }}" alt="JIMAS" class="h-10 w-auto" />
+            <img src="{{ $siteLogo ? asset('storage/'.$siteLogo) : asset('images/logo.png') }}" alt="JIMAS" class="h-10 w-auto" />
         </a>
 
         <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-ink-200">
@@ -32,14 +33,14 @@
             Falar connosco
         </a>
 
-        <button id="menu-btn" class="lg:hidden text-ink-200 hover:text-gold-300" aria-label="Menu">
+        <button id="menu-btn" class="lg:hidden text-ink-200 hover:text-gold-300" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
     </div>
 
-    <div id="mobile-menu" class="lg:hidden bg-ink-900 border-t border-ink-700 mt-4 rounded-2xl shadow-xl">
+    <div id="mobile-menu" class="lg:hidden" aria-hidden="true">
         <div class="flex flex-col p-4 gap-3 text-sm font-medium text-ink-200">
             <a href="{{ route('home') }}" class="mobile-link hover:text-gold-300 py-1 {{ request()->routeIs('home') ? 'text-gold-300' : '' }}">Início</a>
             <a href="{{ route('pages.show', 'sobre-nos') }}" class="mobile-link hover:text-gold-300 py-1 {{ request()->routeIs('pages.show') ? 'text-gold-300' : '' }}">Empresa</a>
